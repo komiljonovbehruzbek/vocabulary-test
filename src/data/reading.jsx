@@ -1,0 +1,188 @@
+const reading = {
+    A1: [
+        {
+            passage: "My name is Anna. I live in a small house with my family. We have a dog and a cat.",
+            question: "Who lives in a small house?",
+            options: ["Anna", "A teacher", "A doctor"],
+            correct: "Anna",
+        },
+        {
+            passage: "Tom likes to play football. He plays with his friends after school.",
+            question: "What does Tom like to play?",
+            options: ["Football", "Basketball", "Tennis"],
+            correct: "Football",
+        },
+        {
+            passage: "The sun is hot. It shines in the sky during the day.",
+            question: "When does the sun shine?",
+            options: ["During the day", "At night", "In the evening"],
+            correct: "During the day",
+        },
+        {
+            passage: "I eat breakfast in the morning. I like eggs and bread.",
+            question: "What do I eat in the morning?",
+            options: ["Breakfast", "Lunch", "Dinner"],
+            correct: "Breakfast",
+        },
+        {
+            passage: "Birds can fly. They have wings.",
+            question: "What can birds do?",
+            options: ["Fly", "Swim", "Run"],
+            correct: "Fly",
+        },
+        {
+            passage: "My school is big. There are many students.",
+            question: "How is my school?",
+            options: ["Big", "Small", "Old"],
+            correct: "Big",
+        },
+        {
+            passage: "Apples are red or green. They are fruits.",
+            question: "What are apples?",
+            options: ["Fruits", "Vegetables", "Animals"],
+            correct: "Fruits",
+        },
+        {
+            passage: "The cat sleeps on the bed. It is soft.",
+            question: "Where does the cat sleep?",
+            options: ["On the bed", "On the floor", "In the kitchen"],
+            correct: "On the bed",
+        },
+        {
+            passage: "I have two brothers. They are tall.",
+            question: "How many brothers do I have?",
+            options: ["Two", "One", "Three"],
+            correct: "Two",
+        },
+        {
+            passage: "The car is fast. It is red.",
+            question: "What color is the car?",
+            options: ["Red", "Blue", "Green"],
+            correct: "Red",
+        },
+        {
+            passage: "We go to the park on Sunday. We play games.",
+            question: "When do we go to the park?",
+            options: ["On Sunday", "On Monday", "On Friday"],
+            correct: "On Sunday",
+        },
+        {
+            passage: "The book is on the table. It is interesting.",
+            question: "Where is the book?",
+            options: ["On the table", "Under the table", "In the bag"],
+            correct: "On the table",
+        },
+        {
+            passage: "Dogs bark. They are animals.",
+            question: "What do dogs do?",
+            options: ["Bark", "Meow", "Sing"],
+            correct: "Bark",
+        },
+        {
+            passage: "I drink water when I am thirsty.",
+            question: "When do I drink water?",
+            options: ["When I am thirsty", "When I am hungry", "When I am happy"],
+            correct: "When I am thirsty",
+        },
+        {
+            passage: "The flower is beautiful. It is yellow.",
+            question: "What color is the flower?",
+            options: ["Yellow", "Red", "Blue"],
+            correct: "Yellow",
+        },
+    ],
+    A2: [
+        {
+            passage: "Last summer, John went to the beach. He swam in the sea and built a sandcastle.",
+            question: "What did John do at the beach?",
+            options: ["He swam and built a sandcastle", "He read a book", "He played football"],
+            correct: "He swam and built a sandcastle",
+        },
+        {
+            passage: "Sarah likes reading books. She reads every night before bed.",
+            question: "When does Sarah read?",
+            options: ["Every night before bed", "In the morning", "During lunch"],
+            correct: "Every night before bed",
+        },
+        {
+            passage: "The weather was rainy yesterday. We stayed inside and watched movies.",
+            question: "Why did we stay inside?",
+            options: ["Because it was rainy", "Because it was sunny", "Because it was cold"],
+            correct: "Because it was rainy",
+        },
+        {
+            passage: "My favorite food is pizza. I eat it with my family on weekends.",
+            question: "When do I eat pizza?",
+            options: ["On weekends", "Every day", "In the morning"],
+            correct: "On weekends",
+        },
+        {
+            passage: "The train arrives at 5 PM. We need to be at the station on time.",
+            question: "What time does the train arrive?",
+            options: ["At 5 PM", "At 6 PM", "At 4 PM"],
+            correct: "At 5 PM",
+        },
+        {
+            passage: "Emma studies English at school. She wants to travel the world.",
+            question: "Why does Emma study English?",
+            options: ["To travel the world", "To play games", "To cook food"],
+            correct: "To travel the world",
+        },
+        {
+            passage: "The museum is open from 9 AM to 6 PM. It has many old paintings.",
+            question: "What does the museum have?",
+            options: ["Many old paintings", "New cars", "Books"],
+            correct: "Many old paintings",
+        },
+        {
+            passage: "Peter rides his bike to work. It is good exercise.",
+            question: "Why does Peter ride his bike?",
+            options: ["It is good exercise", "It is slow", "It is expensive"],
+            correct: "It is good exercise",
+        },
+        {
+            passage: "The party starts at 7 PM. Bring your friends.",
+            question: "What time does the party start?",
+            options: ["At 7 PM", "At 8 PM", "At 6 PM"],
+            correct: "At 7 PM",
+        },
+        {
+            passage: "Lisa plays the piano. She practices every day.",
+            question: "What does Lisa play?",
+            options: ["The piano", "The guitar", "The drum"],
+            correct: "The piano",
+        },
+        {
+            passage: "The river is long. It flows through the city.",
+            question: "Where does the river flow?",
+            options: ["Through the city", "Through the mountain", "Through the forest"],
+            correct: "Through the city",
+        },
+        {
+            passage: "We visited the zoo last week. We saw lions and elephants.",
+            question: "What did we see at the zoo?",
+            options: ["Lions and elephants", "Birds and fish", "Cars and bikes"],
+            correct: "Lions and elephants",
+        },
+        {
+            passage: "The cake is delicious. It has chocolate and cream.",
+            question: "What does the cake have?",
+            options: ["Chocolate and cream", "Fruits and nuts", "Cheese and bread"],
+            correct: "Chocolate and cream",
+        },
+        {
+            passage: "Mark runs in the park every morning. He feels healthy.",
+            question: "When does Mark run?",
+            options: ["Every morning", "Every evening", "Every afternoon"],
+            correct: "Every morning",
+        },
+        {
+            passage: "The book is about animals. It is interesting for children.",
+            question: "Who is the book for?",
+            options: ["For children", "For adults", "For teachers"],
+            correct: "For children",
+        },
+    ],
+};
+
+export default reading;

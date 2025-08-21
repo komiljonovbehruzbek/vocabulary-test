@@ -1,17 +1,30 @@
 import { useState } from "react";
 import Setup from "./components/Setup";
 import Quiz from "./components/Quiz";
+import GrammarQuiz from "./components/GrammarQuiz";
+import ReadingQuiz from "./components/ReadingQuiz";
 import Result from "./components/Result";
 import words from "./data/words";
+import grammar from "./data/grammar";
+import reading from "./data/reading";
 
 function App() {
   const [stage, setStage] = useState("setup");
+  const [quizType, setQuizType] = useState("vocabulary");
   const [questions, setQuestions] = useState([]);
   const [score, setScore] = useState(0);
 
-  const startQuiz = (level, count) => {
-    const selected = [...words[level]].sort(() => Math.random() - 0.5).slice(0, count);
-    setQuestions(selected);
+  const startQuiz = (type, level, count) => {
+    setQuizType(type);
+    let selectedQuestions = [];
+    if (type === "vocabulary") {
+      selectedQuestions = [...words[level]].sort(() => Math.random() - 0.5).slice(0, count);
+    } else if (type === "grammar") {
+      selectedQuestions = [...grammar[level]].sort(() => Math.random() - 0.5).slice(0, count);
+    } else if (type === "reading") {
+      selectedQuestions = [...reading[level]].sort(() => Math.random() - 0.5).slice(0, count);
+    }
+    setQuestions({ level, count, data: selectedQuestions });
     setStage("quiz");
   };
 
@@ -24,13 +37,24 @@ function App() {
     setStage("setup");
     setQuestions([]);
     setScore(0);
+    setQuizType("vocabulary");
   };
 
   return (
     <div className="app">
       {stage === "setup" && <Setup startQuiz={startQuiz} />}
-      {stage === "quiz" && <Quiz questions={questions} finishQuiz={finishQuiz} />}
-      {stage === "result" && <Result score={score} total={questions.length} restart={restart} />}
+      {stage === "quiz" && quizType === "vocabulary" && (
+        <Quiz questions={questions.data} level={questions.level} count={questions.count} finishQuiz={finishQuiz} />
+      )}
+      {stage === "quiz" && quizType === "grammar" && (
+        <GrammarQuiz level={questions.level} count={questions.count} finishQuiz={finishQuiz} />
+      )}
+      {stage === "quiz" && quizType === "reading" && (
+        <ReadingQuiz level={questions.level} count={questions.count} finishQuiz={finishQuiz} />
+      )}
+      {stage === "result" && (
+        <Result score={score} total={questions.count || questions.data?.length} restart={restart} />
+      )}
     </div>
   );
 }

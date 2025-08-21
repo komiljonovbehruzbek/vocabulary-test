@@ -1,24 +1,28 @@
 import { useState, useRef, useEffect } from "react";
+import words from "../data/words";
 
-export default function Quiz({ questions, finishQuiz }) {
+export default function Quiz({ questions, level, count, finishQuiz }) {
     const [step, setStep] = useState(0);
     const [answer, setAnswer] = useState("");
     const [score, setScore] = useState(0);
-    const [feedback, setFeedback] = useState(null); // {type: 'ok'|'error', text: string}
-    const [locked, setLocked] = useState(false);    // submitdan keyin 1 soniya blok
+    const [feedback, setFeedback] = useState(null);
+    const [locked, setLocked] = useState(false);
 
     const inputRef = useRef(null);
-    useEffect(() => { inputRef.current?.focus(); }, [step]);
+    useEffect(() => {
+        inputRef.current?.focus();
+    }, [step]);
 
     const current = questions[step];
-    const percent = Math.round(((step) / questions.length) * 100);
+    const percent = Math.round((step / count) * 100);
 
     const normalize = (s) =>
-        s.trim()
+        s
+            .trim()
             .toLowerCase()
             .normalize?.("NFD")
-            .replace(/\p{Diacritic}/gu, "")  // diakritiklarni olib tashlaydi (brauzering qo‘llasa)
-            .replace(/['’`]/g, "");          // apostrof variantlarini olib tashlash
+            .replace(/\p{Diacritic}/gu, "")
+            .replace(/['’`]/g, "");
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -27,7 +31,6 @@ export default function Quiz({ questions, finishQuiz }) {
         const correct = normalize(answer) === normalize(current.en);
         if (correct) setScore((s) => s + 1);
 
-        // Feedback ko‘rsatish (1s), so‘ngra keyingi savolga
         setLocked(true);
         setFeedback(
             correct
@@ -39,7 +42,7 @@ export default function Quiz({ questions, finishQuiz }) {
             setFeedback(null);
             setLocked(false);
             setAnswer("");
-            if (step + 1 < questions.length) {
+            if (step + 1 < count) {
                 setStep(step + 1);
             } else {
                 const finalScore = correct ? score + 1 : score;
@@ -50,25 +53,27 @@ export default function Quiz({ questions, finishQuiz }) {
 
     return (
         <div className="quiz">
-            <h3>Word {step + 1} of {questions.length}</h3>
-            <div className="progress"><div className="progress__bar" style={{ width: `${percent}%` }} /></div>
-
-            <p><b>{current.uz}</b></p>
+            <h3>So‘z {step + 1} / {count}</h3>
+            <div className="progress">
+                <div className="progress__bar" style={{ width: `${percent}%` }} />
+            </div>
+            <p>
+                <b>{current.uz}</b>
+            </p>
             <form onSubmit={handleSubmit}>
                 <input
                     ref={inputRef}
                     type="text"
-                    placeholder="Type in English..."
+                    placeholder="Ingliz tilida yozing..."
                     value={answer}
                     onChange={(e) => setAnswer(e.target.value)}
                     required
-                    aria-label="Write the English translation"
+                    aria-label="Ingliz tilida tarjimani yozing"
                 />
                 <button type="submit" disabled={!answer.trim() || locked}>
-                    {locked ? "..." : "Next"}
+                    {locked ? "..." : "Keyingi"}
                 </button>
             </form>
-
             <div className={`feedback ${feedback?.type || ""}`} aria-live="polite">
                 {feedback?.text || ""}
             </div>
