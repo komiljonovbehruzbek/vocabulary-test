@@ -105,6 +105,12 @@ textarea:focus {
   background: #ffffff;
 }
 
+.quiz-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
 /* Buttons */
 button,
 .btn {

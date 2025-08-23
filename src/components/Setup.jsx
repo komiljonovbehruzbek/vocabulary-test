@@ -21,9 +21,9 @@ export default function Setup({ startQuiz }) {
                         onChange={(e) => setQuizType(e.target.value)}
                         className="form-select"
                     >
-                        <option value="vocabulary">So‘z Boyligi</option>
-                        <option value="grammar">Grammatika</option>
-                        <option value="reading">O‘qish</option>
+                        <option value="vocabulary">Vocabulary</option>
+                        <option value="grammar">Grammar</option>
+                        <option value="reading">Reading</option>
                     </select>
                 </div>
 
@@ -34,7 +34,7 @@ export default function Setup({ startQuiz }) {
                         onChange={(e) => setLevel(e.target.value)}
                         className="form-select"
                     >
-                        <option value="A1">A1</option>
+                        <option value="A1">A1+</option>
                         <option value="A2">A2</option>
                     </select>
                 </div>
