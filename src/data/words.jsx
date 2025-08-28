@@ -394,7 +394,7 @@ export default {
       { uz: "orkestr", en: "orchestra" },
       { uz: "ijobiy", en: "positive" },
       { uz: "yomg'ir miqdori", en: "rainfall" },
-      { uz: "pul yig'ish", en: "raise money" },
+      { uz: "pul yig'ish", en: "rise money" },
       { uz: "ishonchli", en: "reliable" },
       { uz: "hisobot", en: "report" },
       { uz: "qutqarish", en: "rescue" },

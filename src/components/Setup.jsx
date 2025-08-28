@@ -55,6 +55,7 @@ function Setup({ startQuiz }) {
                         value={count}
                         onChange={(e) => setCount(Math.max(1, e.target.value))}
                         min="1"
+                        max="30"
                     />
                 </div>
                 <button className="start" type="submit">Start</button>
