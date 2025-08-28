@@ -14,17 +14,23 @@ function App() {
   const [questions, setQuestions] = useState([]);
   const [score, setScore] = useState(0);
 
-  const startQuiz = (type, level, count) => {
+  const startQuiz = (type, level, count, unit = "") => {
     setQuizType(type);
     let selectedQuestions = [];
     if (type === "vocabulary") {
-      selectedQuestions = [...words[level]].sort(() => Math.random() - 0.5).slice(0, count);
+      if (level === "A2" && unit && words[level][unit]) {
+        selectedQuestions = [...words[level][unit]].sort(() => Math.random() - 0.5).slice(0, count);
+      } else if (level === "A2") {
+        selectedQuestions = [...Object.values(words[level]).flat()].sort(() => Math.random() - 0.5).slice(0, count);
+      } else {
+        selectedQuestions = [...words[level]].sort(() => Math.random() - 0.5).slice(0, count);
+      }
     } else if (type === "grammar") {
       selectedQuestions = [...grammar[level]].sort(() => Math.random() - 0.5).slice(0, count);
     } else if (type === "reading") {
       selectedQuestions = [...reading[level]].sort(() => Math.random() - 0.5).slice(0, count);
     }
-    setQuestions({ level, count, data: selectedQuestions });
+    setQuestions({ level, count, unit, data: selectedQuestions });
     setStage("quiz");
   };
 
