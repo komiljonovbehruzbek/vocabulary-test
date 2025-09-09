@@ -596,5 +596,13 @@ export default {
     { uz: "kislorod", en: "oxygen" },
     { uz: "harakat, siljish", en: "move" },
     { uz: "harorat", en: "temperature" },
+    { uz: "temir", en: "iron" },
+    { uz: "tarelka, likop", en: "plate" },
+    { uz: "tayoqcha", en: "chopstick" },
+    { uz: "zaytun", en: "olive" },
+    { uz: "olim", en: "scientist" },
+    { uz: "Kinuva o'simligi va Kinuva urug'i", en: "quinoa" },
+    { uz: "urug'", en: "seed" },
+    { uz: "mikrob", en: "microbe" },
   ]
 };
