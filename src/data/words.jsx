@@ -604,5 +604,15 @@ export default {
     { uz: "Kinuva o'simligi va Kinuva urug'i", en: "quinoa" },
     { uz: "urug'", en: "seed" },
     { uz: "mikrob", en: "microbe" },
+    { uz: "televizor", en: "television" },
+    { uz: "orqasidan, orqali", en: "through" },
+    { uz: "o'rta yer dengizi", en: "meditteranean" },
+    { uz: "ter (peshonadan chiqadigan)", en: "sweat" },
+    { uz: "urish, dukkullash", en: "beat" },
+    { uz: "quruq", en: "dry" },
+    { uz: "bir maromda yugurmoq", en: "jog" },
+    { uz: "(velosiped) minmoq", en: "cycle" },
+    { uz: "cho'zmoq, cho'zilmoq", en: "stretch" },
+    { uz: "sakramoq, mayda sakramoq", en: "skip" },
   ]
 };
