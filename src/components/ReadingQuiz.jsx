@@ -1,35 +1,48 @@
-import { useState, useEffect, useRef } from "react";
-import reading from "../data/reading";
+import { useState, useRef, useEffect } from "react";
+import words from "../data/words";
 
-export default function ReadingQuiz({ level, count, finishQuiz }) {
+export default function Quiz({ questions, level, count, finishQuiz }) {
     const [step, setStep] = useState(0);
-    const [selectedOption, setSelectedOption] = useState("");
+    const [answer, setAnswer] = useState("");
     const [score, setScore] = useState(0);
     const [feedback, setFeedback] = useState(null);
     const [locked, setLocked] = useState(false);
 
-    const questions = [...reading[level]].sort(() => Math.random() - 0.5).slice(0, count);
-    const current = questions[step];
-    const percent = Math.round((step / questions.length) * 100);
+    const inputRef = useRef(null);
+    useEffect(() => {
+        inputRef.current?.focus();
+    }, [step]);
 
-    const handleOptionSelect = (option) => {
+    const current = questions[step];
+    const percent = Math.round((step / count) * 100);
+
+    const normalize = (s) =>
+        s
+            .trim()
+            .toLowerCase()
+            .normalize?.("NFD")
+            .replace(/\p{Diacritic}/gu, "")
+            .replace(/['’`]/g, "");
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
         if (locked) return;
-        setSelectedOption(option);
-        const correct = option === current.correct;
+
+        const correct = normalize(answer) === normalize(current.en);
         if (correct) setScore((s) => s + 1);
 
         setLocked(true);
         setFeedback(
             correct
                 ? { type: "ok", text: "To‘g‘ri! 👏" }
-                : { type: "error", text: `Xato. To‘g‘ri javob: ${current.correct}` }
+                : { type: "error", text: `Xato. To‘g‘ri javob: ${current.en}` }
         );
 
         setTimeout(() => {
             setFeedback(null);
             setLocked(false);
-            setSelectedOption("");
-            if (step + 1 < questions.length) {
+            setAnswer("");
+            if (step + 1 < count) {
                 setStep(step + 1);
             } else {
                 const finalScore = correct ? score + 1 : score;
@@ -40,33 +53,31 @@ export default function ReadingQuiz({ level, count, finishQuiz }) {
 
     return (
         <div className="quiz">
-            <h3>Savol {step + 1} / {questions.length}</h3>
+            <h3>So‘z {step + 1} / {count}</h3>
             <div className="progress">
                 <div className="progress__bar" style={{ width: `${percent}%` }} />
             </div>
-            <p className="passage">{current.passage}</p>
-            <p className="text-lg font-medium text-gray-800 mb-4"><b>{current.question}</b></p>
-            <div className="quiz-buttons">
-                {current.options.map((option, index) => (
-                    <button
-                        key={index}
-                        onClick={() => handleOptionSelect(option)}
-                        className={
-                            selectedOption === option
-                                ? option === current.correct
-                                    ? "correct"
-                                    : "incorrect"
-                                : ""
-                        }
-                        disabled={locked}
-                    >
-                        {option}
-                    </button>
-                ))}
-            </div>
+            <p>
+                <b>{current.uz}</b>
+            </p>
+            <form onSubmit={handleSubmit}>
+                <input
+                    ref={inputRef}
+                    type="text"
+                    placeholder="Ingliz tilida yozing..."
+                    value={answer}
+                    onChange={(e) => setAnswer(e.target.value)}
+                    required
+                    aria-label="Ingliz tilida tarjimani yozing"
+                />
+                <button type="submit" disabled={!answer.trim() || locked}>
+                    {locked ? "..." : "Keyingi"}
+                </button>
+            </form>
             <div className={`feedback ${feedback?.type || ""}`} aria-live="polite">
                 {feedback?.text || ""}
             </div>
+            <p className="muted center">Enter tugmasini bosib yuborishingiz ham mumkin.</p>
         </div>
     );
 }
