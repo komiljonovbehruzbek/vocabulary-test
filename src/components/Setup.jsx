@@ -29,6 +29,7 @@ function Setup({ startQuiz }) {
                         <option value="A1">A1</option>
                         <option value="A2">A2</option>
                         <option value="B1">B1</option>
+                        <option value="B1plus">B1+</option>
                     </select>
                 </div>
                 {/* Unit tanlash faqat vocabulary va A2 uchun chiqadi */}
