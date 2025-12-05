@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navigation from "./components/Navigation";
+import Home from "./pages/Home";
 import Setup from "./components/Setup";
 import Quiz from "./components/Quiz";
 import GrammarQuiz from "./components/GrammarQuiz";
@@ -7,6 +10,8 @@ import Result from "./components/Result";
 import words from "./data/words";
 import grammar from "./data/grammar";
 import reading from "./data/reading";
+import About from "./pages/About";
+import Tenses from "./pages/Tenses";
 
 function App() {
   const [stage, setStage] = useState("setup");
@@ -47,21 +52,31 @@ function App() {
   };
 
   return (
-    <div className="app">
-      {stage === "setup" && <Setup startQuiz={startQuiz} />}
-      {stage === "quiz" && quizType === "vocabulary" && (
-        <Quiz questions={questions.data} level={questions.level} count={questions.count} finishQuiz={finishQuiz} />
-      )}
-      {stage === "quiz" && quizType === "grammar" && (
-        <GrammarQuiz level={questions.level} count={questions.count} finishQuiz={finishQuiz} />
-      )}
-      {stage === "quiz" && quizType === "reading" && (
-        <ReadingQuiz level={questions.level} count={questions.count} finishQuiz={finishQuiz} />
-      )}
-      {stage === "result" && (
-        <Result score={score} total={questions.count || questions.data?.length} restart={restart} />
-      )}
-    </div>
+    <Router>
+      <Navigation />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/tenses" element={<Tenses />} />
+        <Route path="/test" element={
+          <div className="app">
+            {stage === "setup" && <Setup startQuiz={startQuiz} />}
+            {stage === "quiz" && quizType === "vocabulary" && (
+              <Quiz questions={questions.data} level={questions.level} count={questions.count} finishQuiz={finishQuiz} />
+            )}
+            {stage === "quiz" && quizType === "grammar" && (
+              <GrammarQuiz level={questions.level} count={questions.count} finishQuiz={finishQuiz} />
+            )}
+            {stage === "quiz" && quizType === "reading" && (
+              <ReadingQuiz level={questions.level} count={questions.count} finishQuiz={finishQuiz} />
+            )}
+            {stage === "result" && (
+              <Result score={score} total={questions.count || questions.data?.length} restart={restart} />
+            )}
+          </div>
+        } />
+      </Routes>
+    </Router>
   );
 }
 
